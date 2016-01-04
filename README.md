@@ -1,6 +1,6 @@
 # go-xke
 
-Bienvenu dans ce hands'on de programmation concurrente avec go !
+Bienvenue dans ce hands'on de programmation concurrente avec go !
 
 ## rappels
 
@@ -10,7 +10,7 @@ Afin de bien commencer ce hands'on, il est imperatif de s'assurer que votre envi
 
 ## but de ce hands'on
 
-Son but est tout d'abord la découverte de go et de son écosysteme en douceur. Il est donc découpé en deux partie.
+Son but est tout d'abord la découverte de go et de son écosysteme en douceur. Il est donc découpé en deux parties.
 
 - finir l'implémentation de waiter.go
 - optimiser waiter.go à l'aide des goroutines et des channels
@@ -26,16 +26,17 @@ Puis lancez la commande "go test go-xke", 3 tests seront alors en erreur. À vou
 
 Si tout se passe bien, lorsque les tests passent, votre waiter est pret !
 
-Il vous reste alors à modifier la variable "host" avec l'ip qui vous sera fourni et à lancer la commande
+Il vous reste alors à modifier la variable "host" avec l'ip qui vous sera fournie et à lancer la commande
 "go run waiter.go -player=nomDeJoueur"
 
 ## 2) optimiser waiter.go
 
 Vous pouvez remarquer maintenant que le Bar peut mettre beaucoup de temps à répondre. Ce temps de réponse est lié au nombre
-de point qu'un type de commande donne peut rapporter.
+de point qu'un type de commande donne peut vous rapporter.
 
-le but du jeu étant d'être plus efficace que les autres participants, il va falloir utiliser intelligement les goroutine et les channels.
+le but du jeu étant d'être plus efficace que les autres participants, il va falloir utiliser intelligement les goroutines et les channels.
 
+Une vue en temps réel du score de toutes les équipes sera affiché pendant l'exercice. 
  
 Bonne chance !
 
