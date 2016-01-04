@@ -17,15 +17,17 @@ var (
 	bartenderAddr string = host + ":3000"
 	deliverAddr string = host + ":3002"
 
-	// TODO replace by your player id
-	playerId string = "foo"
+
+	playerId string
+	topic string
 )
 
 
 func main() {
-	topic := flag.String("topic", "orders#ephemeral", "the topic to subscribe on")
-	channel := flag.String("channel", "chan#ephemeral", "the channel to use to consume topic message")// to do remove and make it empty
+	flag.StringVar(&playerId, "player", "foo", "the user name")
+	flag.StringVar(&topic, "topic", "orders", "the topic to subscribe on")
 	flag.Parse()
+	channel := playerId
 	var wg sync.WaitGroup
 	wg.Add(1)
 	initListener(*topic, *channel)

@@ -4,7 +4,7 @@ Bienvenu dans ce hands'on de programmation concurrente avec go !
 
 ## rappels
 
-Afin de bien commencer ce hands'on, il est imperatif de s'assurer que votre environnement go soit bien initialise.
+Afin de bien commencer ce hands'on, il est imperatif de s'assurer que votre environnement go soit bien initialisé.
 
 -- todo : a finir !
 
