@@ -30,7 +30,7 @@ func main() {
 	channel := playerId
 	var wg sync.WaitGroup
 	wg.Add(1)
-	initListener(*topic, *channel)
+	initListener(topic, channel)
 	wg.Wait()
 }
 
@@ -84,8 +84,7 @@ func askBartender(url string) (statusCode int) {
 }
 
 func askBartenderUrl(host string, order *mes.Order) string {
-	// TODO return the expected value
-	return "" + strconv.Itoa(int(order.Id))
+	return "http://" + host + "/bartender/request/" + playerId + "/" + strconv.Itoa(int(order.Id))
 }
 
 func createDeliverBody(order *mes.Order) []byte {
