@@ -8,7 +8,7 @@ Afin de bien commencer ce hands'on, il est imperatif de s'assurer que votre envi
 
 -- todo : a finir !
 
-## but de ce hand'on
+## but de ce hands'on
 
 Son but est tout d'abord la découverte de go et de son écosysteme en douceur. Il est donc découpé en deux partie.
 
