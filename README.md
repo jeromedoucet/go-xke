@@ -6,7 +6,11 @@ Bienvenue dans ce hands'on de programmation concurrente avec go !
 
 Afin de bien commencer ce hands'on, il est imperatif de s'assurer que votre environnement go soit bien initialisé.
 
--- todo : a finir !
+Pour cela vous devez avoir :
+- Go installé
+- La variable GOPATH correctement initialisé (il s'agit du chemin vers la racine de votre workspace GO)
+- Les répertoires bin/ pkg/ et src/ crées dans $GOPATH/
+- Ce dépot directement cloné dans $GOPATH/src
 
 ## but de ce hands'on
 

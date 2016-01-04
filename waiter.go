@@ -22,7 +22,6 @@ var (
 	topic string
 )
 
-
 func main() {
 	flag.StringVar(&playerId, "player", "foo", "the user name")
 	flag.StringVar(&topic, "topic", "orders", "the topic to subscribe on")
