@@ -88,4 +88,13 @@ func TestUnmarshallMes(t *testing.T) {
 	if expectingOrder.Type != currentOrder.Type {
 		t.Fail()
 	}
+	if (expectingOrder.Id != currentOrder.Id) {
+		t.Fatalf("expecting order id %d is not equal to current order id %d", expectingOrder.Id, currentOrder.Id)
+	}
+	if (expectingOrder.PlayerId != currentOrder.PlayerId) {
+		t.Fatalf("expecting order player id %s is not equal to current order player id %s", expectingOrder.PlayerId, currentOrder.PlayerId)
+	}
+	if (expectingOrder.Valid != currentOrder.Valid) {
+		t.Fatalf("expecting order valid %s is not equal to current order valid id %s", expectingOrder.Valid, currentOrder.Valid)
+	}
 }
