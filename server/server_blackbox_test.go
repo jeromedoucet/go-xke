@@ -35,7 +35,7 @@ func Test_server_should_handle_new_order_call_bartender_and_answer_on_callback_a
 	defer clientCallBack.Close()
 
 	// create & marshall order
-	order := commons.Order{orderId, 5, commons.Beer, clientCallBack.URL + cbkPath}
+	order := commons.Order{Id: orderId, Quantity: 5, Type: commons.Beer, CallBackUrl: clientCallBack.URL + cbkPath}
 	body, _ := json.Marshal(order)
 
 	// mock bartender api
@@ -87,13 +87,13 @@ func assertOnBartenderCall(rw http.ResponseWriter, rq *http.Request, order *comm
 }
 
 func startHttpServeAsync(srv *server.Server) {
-	wg2 := new(sync.WaitGroup)
-	wg2.Add(1)
+	wg := new(sync.WaitGroup)
+	wg.Add(1)
 	go func() {
-		wg2.Done()
+		wg.Done()
 		srv.Start()
 	}()
-	wg2.Wait()
+	wg.Wait()
 }
 
 // waitTimeout waits for the waitgroup for the specified max timeout.

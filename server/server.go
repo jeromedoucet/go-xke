@@ -4,8 +4,6 @@ import (
 	"net/http"
 	"log"
 	"github.com/vil-coyote-acme/go-concurrency/commons"
-	"io"
-	"encoding/json"
 	"bytes"
 )
 
@@ -16,7 +14,7 @@ func NewServer(playerId string, bartenderUrl string) (s *Server) {
 	s.bartenderUrl = bartenderUrl
 	s.playerId = playerId
 	s.mux = http.NewServeMux()
-	s.mux.HandleFunc("/orders", s.orderHandler)//mux server. only listen on /order request !
+	s.mux.HandleFunc("/orders", s.handleOrder)//mux server. only listen on /order request !
 	return s
 }
 
@@ -34,10 +32,10 @@ func (s *Server) Start() {
 	}
 }
 
-func (s *Server) orderHandler(w http.ResponseWriter, r *http.Request) {
+func (s *Server) handleOrder(w http.ResponseWriter, r *http.Request) {
 	// first step : unmarshal the incoming order
 	var order commons.Order
-	buf, unMarshallErr := unmarshallOrder(r, &order)
+	buf, unMarshallErr := commons.UnmarshalOrderFromHttp(r, &order)
 	if unMarshallErr != nil {
 		log.Println(unMarshallErr.Error())
 		return
@@ -58,11 +56,4 @@ func (s *Server) orderHandler(w http.ResponseWriter, r *http.Request) {
 	// third step, if all is right, get your money back !
 	http.Get(order.CallBackUrl)
 	w.WriteHeader(200)
-}
-
-func unmarshallOrder(r *http.Request, order *commons.Order) (buf []byte, err error) {
-	buf = make([]byte, r.ContentLength)
-	io.ReadFull(r.Body, buf)
-	err = json.Unmarshal(buf, &order)
-	return
 }
