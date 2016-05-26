@@ -1,27 +1,26 @@
 package server_test
 
 import (
-	"testing"
-	"net/http/httptest"
-	"net/http"
-	"encoding/json"
-	"io"
-	"github.com/vil-coyote-acme/go-concurrency/commons"
-	"github.com/stretchr/testify/assert"
-	"strconv"
 	"bytes"
+	"encoding/json"
+	"github.com/stretchr/testify/assert"
+	"github.com/vil-coyote-acme/go-concurrency/commons"
 	"github.com/vil-coyote-acme/go-xke/server"
+	"io"
+	"net/http"
+	"net/http/httptest"
+	"strconv"
 	"sync"
+	"testing"
 	"time"
 )
 
 var (
 	playerId string = "player"
-	brtPath string = "/orders/"
-	orderId int = 1
-	cbkPath string = "/" + playerId + "/bill/" + strconv.Itoa(orderId)
+	brtPath  string = "/orders/"
+	orderId  int    = 1
+	cbkPath  string = "/" + playerId + "/bill/" + strconv.Itoa(orderId)
 )
-
 
 // nominal functional test
 func Test_server_should_handle_new_order_call_bartender_and_answer_on_callback_addr(t *testing.T) {
@@ -52,7 +51,7 @@ func Test_server_should_handle_new_order_call_bartender_and_answer_on_callback_a
 	assert.Nil(t, err)
 	if err == nil {
 		assert.Equal(t, resp.StatusCode, 200)
-		assert.False(t, waitTimeout(wg, time.Second * 5))
+		assert.False(t, waitTimeout(wg, time.Second*5))
 	}
 }
 
