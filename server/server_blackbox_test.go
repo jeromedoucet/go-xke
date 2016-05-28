@@ -17,9 +17,9 @@ import (
 
 var (
 	playerId string = "player"
-	brtPath  string = "/orders/"
-	orderId  int    = 1
-	cbkPath  string = "/" + playerId + "/bill/" + strconv.Itoa(orderId)
+	brtPath string = "/orders/"
+	orderId int = 1
+	cbkPath string = "/" + playerId + "/bill/" + strconv.Itoa(orderId)
 )
 
 // nominal functional test
@@ -51,7 +51,7 @@ func Test_server_should_handle_new_order_call_bartender_and_answer_on_callback_a
 	assert.Nil(t, err)
 	if err == nil {
 		assert.Equal(t, resp.StatusCode, 200)
-		assert.False(t, waitTimeout(wg, time.Second*5))
+		assert.False(t, waitTimeout(wg, time.Second * 5))
 	}
 }
 
@@ -83,6 +83,18 @@ func assertOnBartenderCall(rw http.ResponseWriter, rq *http.Request, order *comm
 	assert.Equal(t, order.Id, brtOrder.Id, "order id assert on bartender")
 	assert.Equal(t, order.Quantity, brtOrder.Quantity, "quantity assert on bartender")
 	assert.Equal(t, order.Type, brtOrder.Type, "beverage type on bartender")
+}
+
+func Test_server_should_answer_200_to_health_check(t *testing.T) {
+	// given
+	srv := server.NewServer(playerId, "http:localhost:1234")
+	// when
+	startHttpServeAsync(srv)
+	time.Sleep(time.Millisecond * 100)
+	resp, err := http.Get("http://127.0.0.1:4242/status")
+	// then
+	assert.Nil(t, err)
+	assert.Equal(t, resp.StatusCode, 200)
 }
 
 func startHttpServeAsync(srv *server.Server) {

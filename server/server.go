@@ -14,7 +14,8 @@ func NewServer(playerId string, bartenderUrl string) (s *Server) {
 	s.bartenderUrl = bartenderUrl
 	s.playerId = playerId
 	s.mux = http.NewServeMux()
-	s.mux.HandleFunc("/orders", s.handleOrder) //mux server. only listen on /order request !
+	s.mux.HandleFunc("/orders", s.handleOrder)
+	s.mux.HandleFunc("/status", s.handleStatus)
 	return s
 }
 
@@ -43,7 +44,7 @@ func (s *Server) handleOrder(w http.ResponseWriter, r *http.Request) {
 	log.Printf("receive one order : %s", order)
 
 	// second step, send the order to the bartender
-	res, err := http.Post(s.bartenderUrl+bartenderPath, "application/json", bytes.NewBuffer(buf))
+	res, err := http.Post(s.bartenderUrl + bartenderPath, "application/json", bytes.NewBuffer(buf))
 	if err != nil {
 		log.Printf("error when calling bartender api : %s", err)
 		return
@@ -55,5 +56,9 @@ func (s *Server) handleOrder(w http.ResponseWriter, r *http.Request) {
 
 	// third step, if all is right, get your money back !
 	http.Get(order.CallBackUrl)
+	w.WriteHeader(200)
+}
+
+func (Server) handleStatus(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(200)
 }
