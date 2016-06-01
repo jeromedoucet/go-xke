@@ -17,9 +17,9 @@ import (
 
 var (
 	playerId string = "player"
-	brtPath string = "/orders/"
-	orderId int = 1
-	cbkPath string = "/" + playerId + "/bill/" + strconv.Itoa(orderId)
+	brtPath  string = "/orders/"
+	orderId  int    = 1
+	cbkPath  string = "/" + playerId + "/bill/" + strconv.Itoa(orderId)
 )
 
 // nominal functional test
@@ -51,7 +51,7 @@ func Test_server_should_handle_new_order_call_bartender_and_answer_on_callback_a
 	assert.Nil(t, err)
 	if err == nil {
 		assert.Equal(t, resp.StatusCode, 200)
-		assert.False(t, waitTimeout(wg, time.Second * 5))
+		assert.False(t, commons.WaitTimeout(wg, time.Second*5))
 	}
 }
 
@@ -105,20 +105,4 @@ func startHttpServeAsync(srv *server.Server) {
 		srv.Start()
 	}()
 	wg.Wait()
-}
-
-// waitTimeout waits for the waitgroup for the specified max timeout.
-// Returns true if waiting timed out.
-func waitTimeout(wg *sync.WaitGroup, timeout time.Duration) bool {
-	c := make(chan struct{})
-	go func() {
-		defer close(c)
-		wg.Wait()
-	}()
-	select {
-	case <-c:
-		return false // completed normally
-	case <-time.After(timeout):
-		return true // timed out
-	}
 }

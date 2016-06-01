@@ -44,7 +44,7 @@ func (s *Server) handleOrder(w http.ResponseWriter, r *http.Request) {
 	log.Printf("receive one order : %s", order)
 
 	// second step, send the order to the bartender
-	res, err := http.Post(s.bartenderUrl + bartenderPath, "application/json", bytes.NewBuffer(buf))
+	res, err := http.Post(s.bartenderUrl+bartenderPath, "application/json", bytes.NewBuffer(buf))
 	if err != nil {
 		log.Printf("error when calling bartender api : %s", err)
 		return
