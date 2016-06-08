@@ -20,6 +20,7 @@ var (
 	brtPath  string = "/orders/"
 	orderId  int    = 1
 	cbkPath  string = "/" + playerId + "/bill/" + strconv.Itoa(orderId)
+	started bool = false
 )
 
 // nominal functional test
@@ -98,11 +99,14 @@ func Test_server_should_answer_200_to_health_check(t *testing.T) {
 }
 
 func startHttpServeAsync(srv *server.Server) {
-	wg := new(sync.WaitGroup)
-	wg.Add(1)
-	go func() {
-		wg.Done()
-		srv.Start()
-	}()
-	wg.Wait()
+	if ! started{
+		started = true
+		wg := new(sync.WaitGroup)
+		wg.Add(1)
+		go func() {
+			wg.Done()
+			srv.Start()
+		}()
+		wg.Wait()
+	}
 }
