@@ -25,7 +25,6 @@ type Server struct {
 	mux          *http.ServeMux
 }
 
-// start the server. Beware ! this call is blocking !
 func (s *Server) Start() {
 	err := http.ListenAndServe(":4242", s.mux)
 	if err != nil {
