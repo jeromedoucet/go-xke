@@ -1,13 +1,13 @@
 package registration_test
 
 import (
-	"testing"
-	"sync"
-	"net/http/httptest"
-	"net/http"
-	"github.com/vil-coyote-acme/go-concurrency/commons"
 	"github.com/stretchr/testify/assert"
+	"github.com/vil-coyote-acme/go-concurrency/commons"
 	"github.com/vil-coyote-acme/go-xke/registration"
+	"net/http"
+	"net/http/httptest"
+	"sync"
+	"testing"
 	"time"
 )
 
@@ -31,7 +31,7 @@ func Test_register_should_return_no_error_on_200_response(t *testing.T) {
 	// when
 	err := registration.Register(srv.URL, ip, playerId)
 	assert.Nil(t, err)
-	timeOut := commons.WaitTimeout(wg, time.Second * 5)
+	timeOut := commons.WaitTimeout(wg, time.Second*5)
 	assert.False(t, timeOut)
 }
 
@@ -56,7 +56,7 @@ func Test_register_should_return_no_error_on_non_200_response(t *testing.T) {
 	// when
 	err := registration.Register(srv.URL, ip, playerId)
 	assert.NotNil(t, err)
-	timeOut := commons.WaitTimeout(wg, time.Second * 5)
+	timeOut := commons.WaitTimeout(wg, time.Second*5)
 	assert.False(t, timeOut)
 }
 
