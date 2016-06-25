@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-const bartenderPath string = "/orders/"
+const bartenderPath string = "/orders"
 
 func NewServer(playerId string, bartenderUrl string) (s *Server) {
 	s = new(Server)
@@ -25,8 +25,8 @@ type Server struct {
 	mux          *http.ServeMux
 }
 
-func (s *Server) Start() {
-	err := http.ListenAndServe(":4242", s.mux)
+func (s *Server) Start(url string) {
+	err := http.ListenAndServe(url, s.mux)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -54,7 +54,13 @@ func (s *Server) handleOrder(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// third step, if all is right, get your money back !
-	http.Get(order.CallBackUrl)
+	paymentRes, paymentErr := http.Get(order.CallBackUrl)
+	if paymentErr != nil {
+		log.Printf("get an error when calling payment api : %s", paymentErr.Error())
+	}
+	if paymentRes != nil && paymentRes.StatusCode != 200 {
+		log.Printf("get a non 200 response when calling payment api : %s", paymentRes.Status)
+	}
 	w.WriteHeader(200)
 }
 

@@ -17,7 +17,7 @@ import (
 
 var (
 	playerId string = "player"
-	brtPath  string = "/orders/"
+	brtPath  string = "/orders"
 	orderId  int    = 1
 	cbkPath  string = "/" + playerId + "/bill/" + strconv.Itoa(orderId)
 	started  bool   = false
@@ -105,7 +105,7 @@ func startHttpServeAsync(srv *server.Server) {
 		wg.Add(1)
 		go func() {
 			wg.Done()
-			srv.Start()
+			srv.Start(":4242")
 		}()
 		wg.Wait()
 	}

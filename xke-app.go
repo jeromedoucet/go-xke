@@ -23,7 +23,7 @@ func main() {
 	flag.Parse()
 	registrationErr := registration.Register("http://"+clientIp, "http://"+ourIp, playerId)
 	if registrationErr == nil {
-		server.NewServer(playerId, "http://"+bartenderIp).Start()
+		server.NewServer(playerId, "http://"+bartenderIp).Start(ourIp)
 	} else {
 		log.Panic(fmt.Sprintf("Erreur when trying to register the server : %s", registrationErr.Error()))
 	}
