@@ -5,6 +5,7 @@ import (
 	"github.com/vil-coyote-acme/go-concurrency/commons"
 	"log"
 	"net/http"
+	"encoding/json"
 )
 
 const bartenderPath string = "/orders"
@@ -35,15 +36,21 @@ func (s *Server) Start(url string) {
 func (s *Server) handleOrder(w http.ResponseWriter, r *http.Request) {
 	// first step : unmarshal the incoming order
 	var order commons.Order
-	buf, unMarshallErr := commons.UnmarshalOrderFromHttp(r, &order)
+	unMarshallErr := commons.UnmarshalOrderFromHttp(r, &order)
 	if unMarshallErr != nil {
 		log.Println(unMarshallErr.Error())
 		return
 	}
 	log.Printf("receive one order : %s", order)
 
+	order.PlayerId = s.playerId
+	buf, marshalErr := json.Marshal(order)
+	if marshalErr != nil {
+		log.Println(marshalErr.Error())
+		return
+	}
 	// second step, send the order to the bartender
-	res, err := http.Post(s.bartenderUrl+bartenderPath, "application/json", bytes.NewBuffer(buf))
+	res, err := http.Post(s.bartenderUrl + bartenderPath, "application/json", bytes.NewBuffer(buf))
 	if err != nil {
 		log.Printf("error when calling bartender api : %s", err)
 		return
