@@ -49,25 +49,27 @@ func (s *Server) handleOrder(w http.ResponseWriter, r *http.Request) {
 		log.Println(marshalErr.Error())
 		return
 	}
-	// second step, send the order to the bartender
-	res, err := http.Post(s.bartenderUrl + bartenderPath, "application/json", bytes.NewBuffer(buf))
-	if err != nil {
-		log.Printf("error when calling bartender api : %s", err)
-		return
-	}
-	if res.StatusCode != 200 {
-		log.Printf("get a non 200 response when calling bartender api : %s", res.Status)
-		return
-	}
+	go func() {
+		// second step, send the order to the bartender
+		res, err := http.Post(s.bartenderUrl + bartenderPath, "application/json", bytes.NewBuffer(buf))
+		if err != nil {
+			log.Printf("error when calling bartender api : %s", err)
+			return
+		}
+		if res.StatusCode != 200 {
+			log.Printf("get a non 200 response when calling bartender api : %s", res.Status)
+			return
+		}
 
-	// third step, if all is right, get your money back !
-	paymentRes, paymentErr := http.Get(order.CallBackUrl)
-	if paymentErr != nil {
-		log.Printf("get an error when calling payment api : %s", paymentErr.Error())
-	}
-	if paymentRes != nil && paymentRes.StatusCode != 200 {
-		log.Printf("get a non 200 response when calling payment api : %s", paymentRes.Status)
-	}
+		// third step, if all is right, get your money back !
+		paymentRes, paymentErr := http.Get(order.CallBackUrl)
+		if paymentErr != nil {
+			log.Printf("get an error when calling payment api : %s", paymentErr.Error())
+		}
+		if paymentRes != nil && paymentRes.StatusCode != 200 {
+			log.Printf("get a non 200 response when calling payment api : %s", paymentRes.Status)
+		}
+	} ()
 	w.WriteHeader(200)
 }
 
