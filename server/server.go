@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 	"encoding/json"
+	"io"
 )
 
 const bartenderPath string = "/orders"
@@ -16,7 +17,6 @@ func NewServer(playerId string, bartenderUrl string) (s *Server) {
 	s.playerId = playerId
 	s.mux = http.NewServeMux()
 	s.mux.HandleFunc("/orders", s.handleOrder)
-	s.mux.HandleFunc("/status", s.handleStatus)
 	return s
 }
 
@@ -36,7 +36,7 @@ func (s *Server) Start(url string) {
 func (s *Server) handleOrder(w http.ResponseWriter, r *http.Request) {
 	// first step : unmarshal the incoming order
 	var order commons.Order
-	unMarshallErr := commons.UnmarshalOrderFromHttp(r, &order)
+	unMarshallErr := unmarshalOrderFromHttp(r, &order)
 	if unMarshallErr != nil {
 		log.Println(unMarshallErr.Error())
 		return
@@ -71,6 +71,9 @@ func (s *Server) handleOrder(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(200)
 }
 
-func (Server) handleStatus(w http.ResponseWriter, r *http.Request) {
-	w.WriteHeader(200)
+func unmarshalOrderFromHttp(r *http.Request, order *commons.Order) (err error) {
+	buf := make([]byte, r.ContentLength)
+	io.ReadFull(r.Body, buf)
+	err = json.Unmarshal(buf, &order)
+	return
 }
