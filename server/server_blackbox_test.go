@@ -3,9 +3,6 @@ package server_test
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/stretchr/testify/assert"
-	"github.com/vil-coyote-acme/go-concurrency/commons"
-	"github.com/vil-coyote-acme/go-xke/server"
 	"io"
 	"net/http"
 	"net/http/httptest"
@@ -13,6 +10,10 @@ import (
 	"sync"
 	"testing"
 	"time"
+
+	"github.com/stretchr/testify/assert"
+	"github.com/vil-coyote-acme/go-concurrency/commons"
+	"github.com/vil-coyote-acme/go-xke/server"
 )
 
 var (
@@ -84,18 +85,6 @@ func assertOnBartenderCall(rw http.ResponseWriter, rq *http.Request, order *comm
 	assert.Equal(t, order.Id, brtOrder.Id, "order id assert on bartender")
 	assert.Equal(t, order.Quantity, brtOrder.Quantity, "quantity assert on bartender")
 	assert.Equal(t, order.Type, brtOrder.Type, "beverage type on bartender")
-}
-
-func Test_server_should_answer_200_to_health_check(t *testing.T) {
-	// given
-	srv := server.NewServer(playerId, "http:localhost:1234")
-	// when
-	startHttpServeAsync(srv)
-	time.Sleep(time.Millisecond * 100)
-	resp, err := http.Get("http://127.0.0.1:4242/status")
-	// then
-	assert.Nil(t, err)
-	assert.Equal(t, resp.StatusCode, 200)
 }
 
 func startHttpServeAsync(srv *server.Server) {
