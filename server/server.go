@@ -1,10 +1,7 @@
 package server
 
 import (
-	"bytes"
-	"encoding/json"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
 
@@ -70,45 +67,40 @@ func NewServer(playerId string, bartenderUrl string) (s *Server) {
 
 func unmarshalOrderFromHttp(r *http.Request, order *commons.Order) (err error) {
 	/** TODO  1.*/
-	buf := make([]byte, r.ContentLength)
-	// a. use io library to read message from the body of the request
-	io.ReadFull(r.Body, buf)
-	// b. use json library to unmarsall the message in a "commons.Order"
-	err = json.Unmarshal(buf, &order)
-	// c. return
+	// a. create a variable of type []byte to contain the body of the request.
+	// Hint: buf := make([]byte, r.ContentLength)
+	// b. use io library to read the message from the body of the request
+	// and save it in the variable of step a. buf
+
+	// c. use json library to unmarsall the message in the order
+
+	// d. return
 	return
 }
 
 func (s *Server) postOrder(order commons.Order) (r *http.Response, err error) {
 	/** TODO 2.*/
-	//a. assing playerId
-	order.PlayerId = s.playerId
-	//b. import and use json library to marshall order in the "buf" variable.
-	buf, marshalErr := json.Marshal(order)
+	//a. assing playerId to the order
+
+	//b. import and use json library to marshall order in a variable.
+
 	//c. if error in marshalling, log it and return
-	if marshalErr != nil {
-		log.Println(marshalErr.Error())
-		return
-	}
+
 	bartenderUrl := s.bartenderUrl + bartenderPath
-	// d. use http post to send to the bartenderUrl,as json the marshalled order
-	// you may want to explore la function bytes.NewBuffer
-	return http.Post(bartenderUrl, "application/json", bytes.NewBuffer(buf))
+	fmt.Println(bartenderUrl)
+	// d. use http post to send to the bartenderUrl, as application/json, the marshalled order
+	// you may want to explore la function bytes.NewBuffer. Return the response and the error if it exists
+	return nil, nil
 }
 
 func getDataFromCallback(order commons.Order) (err error) {
 	/**TODO 3.*/
 	//a. use the method Get from http to get my payment status
-	paymentRes, paymentErr := http.Get(order.CallBackUrl)
+
 	//b. if error, log it and return
-	if paymentErr != nil {
-		log.Printf("get an error when calling payment api : %s", paymentErr.Error())
-		return paymentErr
-	}
-	//c. if StatusCode from the response of the server != 200, log the error and return
-	if paymentRes != nil && paymentRes.StatusCode != 200 {
-		log.Printf("get a non 200 response when calling payment api : %s", paymentRes.Status)
-		return fmt.Errorf("get a non 200 response when calling payment api : %s", paymentRes.Status)
-	}
+
+	//c. if StatusCode from the response of the server != 200, log it  and return an error
+	// hint: explore fmt.Errorf
+
 	return nil
 }
