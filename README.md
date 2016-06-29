@@ -2,7 +2,7 @@
 ## Objectif 
 Cet atelier a pour objectif de vous faire coder en go et de découvrir le langage.
 
-Le principe est simple. Nous vous propossons un jeu où vous êtes un client qui entre dans un bar.  Vous devez commander et payer vos boisons. Nous avons codé pour vous le  bartender, le order maker et le server. On vous donne des méthodes à implementer et des test unitaires.
+Le principe est simple. Nous vous proposons un jeu où vous êtes un serveur dans un bar.  Vous devez passer les commandes des clients et les faire payer ses boisons. Nous avons codé pour vous le  bartender, le ordermaker et le client. On vous donne le serveur avec des méthodes à implémenter et des tests unitaires.
 
 ## Les pre-requis 
  - installation de Go : https://golang.org/dl/
