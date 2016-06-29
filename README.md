@@ -12,7 +12,7 @@ Le principe est simple. Nous vous propossons un jeu où vous êtes un client qui
  - executer la commande:
 
 ```sh
-$ git clone
+$ git clone https://github.com/vil-coyote-acme/go-xke.git
 ```
 
 ### 1. Le server et la communication http et parsing json
