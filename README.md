@@ -11,7 +11,7 @@ Le principe est simple. Nous vous propossons un jeu où vous êtes un client qui
  - create un repertoire $GOPATH/src/github.com/vil-coyote-acme/ 
  - executer la commande:
 
- ```sh
+```sh
 $ git clone
 ```
 
