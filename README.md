@@ -10,14 +10,18 @@ Le principe est simple. Nous vous propossons un jeu où vous êtes un client qui
  - export de la variable $GOPATH pointant vers le workspace Go
  - create un repertoire $GOPATH/src/github.com/vil-coyote-acme/ 
  - executer la commande:
+
  ```sh
 $ git clone
 ```
+
 ### 1. Le server et la communication http et parsing json
 Basculer sur la branche step1 : 
+
 ```sh
 $ git checkout step-1
 ```
+
 Modifier les méthodes de **server.go**. Utiliser les **TODO** dans le code pour faire passer les tests
 
 #### Plus d’infos :
