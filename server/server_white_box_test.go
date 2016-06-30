@@ -9,6 +9,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/vil-coyote-acme/go-concurrency/commons"
+	"net/http/httptest"
 )
 
 
@@ -30,10 +31,19 @@ func Test_postOrder_should_fail(t *testing.T) {
 
 func Test_postOrder_should_do_without_error(t *testing.T) {
 	// given
-	order := commons.Order{Id: 1, Quantity: 4, CallBackUrl: "111.111.111.111", PlayerId: "a player id", Valid: true}
 	server := new(Server)
 	server.playerId = "new id"
-	server.bartenderUrl = "http://123.com"
+	order := commons.Order{Id: 1, Quantity: 4, CallBackUrl: "111.111.111.111"}
+	srv := httptest.NewServer(http.HandlerFunc(func(rw http.ResponseWriter, rq *http.Request) {
+		var recievedOrder commons.Order
+		commons.UnmarshalOrderFromHttp(rq, &recievedOrder)
+		assert.Equal(t, order.Id, recievedOrder.Id)
+		assert.Equal(t, server.playerId, recievedOrder.PlayerId)
+		assert.Equal(t, order.CallBackUrl, recievedOrder.CallBackUrl)
+		assert.Equal(t, order.Quantity, recievedOrder.Quantity)
+		rw.WriteHeader(200)
+	}))
+	server.bartenderUrl = srv.URL
 	// when
 	resp, err := server.postOrder(order)
 	// then
@@ -53,7 +63,11 @@ func Test_getDataFromCallback_should_fail_with_error_in_url(t *testing.T) {
 func Test_getDataFromCallback_should_not_fail(t *testing.T) {
 	// given
 	var order commons.Order
-	order.CallBackUrl = "http://123.com"
+	srv := httptest.NewServer(http.HandlerFunc(func(rw http.ResponseWriter, rq *http.Request) {
+		assert.Equal(t, http.MethodGet, rq.Method)
+		rw.WriteHeader(200)
+	}))
+	order.CallBackUrl = srv.URL
 	// when
 	err := getDataFromCallback(order)
 	// then
