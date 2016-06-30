@@ -8,7 +8,10 @@ registration.go.
 ### cas nominal
 
 Lancez le premier test a l'aide de la commande suivante:
-go test github.com/vil-coyote-acme/go-xke/registration -run ^Test_register_should_return_no_error_on_200_response$
+
+```
+$ go test github.com/vil-coyote-acme/go-xke/registration -run ^Test_register_should_return_no_error_on_200_response$
+```
 
 Il s'agit du cas nominal d'un enregistrement. Vous devrez pour cela completer la creation de l'instance de registration
 en precisant les attributs PlayerId et Ip.
@@ -44,7 +47,10 @@ Si le nom de joueur que vous avez choisi est deja pris, ou si vous essayez de vo
 (et donc de truander !) le client peut rejeter votre demande d'enregistrement.
 
 Le test correspondant est le suivant :
+
+```
 go test github.com/vil-coyote-acme/go-xke/registration -run ^Test_register_should_return_no_error_on_non_200_response$
+```
 
 Il vous faudra alors exploiter la premiere valeur retourne par http.Post(...) qui possede un attribut 'StatusCode'
 contenant le code retour http de la requete. 
@@ -57,7 +63,10 @@ du package "errors"
 ### cas d'echec de la requete 
 
 Le test correspondant est le suivant :
-go test github.com/vil-coyote-acme/go-xke/registration -run ^Test_register_should_return_error_when_connection_issue$
+
+```
+$ go test github.com/vil-coyote-acme/go-xke/registration -run ^Test_register_should_return_error_when_connection_issue$
+```
 
 Il ne vous reste ici qu'a considerer le cas ou la valeur de retour de type 'error' du Post est non nil. Si tel est le cas,
  il vous faudra retourner cette error !
@@ -71,8 +80,10 @@ barman puis se fera payer en retour aupres des clients.
 ### Requete vers le barman
 
 Les premiers tests sont les suivants :
-go test github.com/vil-coyote-acme/go-xke/server -run ^Test_postOrder_should_fail$
-go test github.com/vil-coyote-acme/go-xke/server -run ^Test_postOrder_should_do_without_error$
+```
+$ go test github.com/vil-coyote-acme/go-xke/server -run ^Test_postOrder_should_fail$
+$ go test github.com/vil-coyote-acme/go-xke/server -run ^Test_postOrder_should_do_without_error$
+````
 
 Il porte sur l'envoi de la commande au barman et consiste a implementer la fonction postOrder et la requete Post que
 vous devrez faire est tres similaire a ce que vous avez deja fait dans le module registration
@@ -80,8 +91,11 @@ vous devrez faire est tres similaire a ce que vous avez deja fait dans le module
 ### Payment
 
 Les premiers tests sont les suivants :
-go test github.com/vil-coyote-acme/go-xke/server -run ^Test_getDataFromCallback_should_fail_with_error_in_url$
-go test github.com/vil-coyote-acme/go-xke/server -run ^Test_getDataFromCallback_should_not_fail$
+
+```
+$ go test github.com/vil-coyote-acme/go-xke/server -run ^Test_getDataFromCallback_should_fail_with_error_in_url$
+$ go test github.com/vil-coyote-acme/go-xke/server -run ^Test_getDataFromCallback_should_not_fail$
+```
 
 Il s'agit d'implementer la fonction getDataFromCallback. Il vous faudra faire un Get sur l'url de callback contenu dans **l'order**, afin de 'recuperer'
 votre du. Un composant tiers se chargera de compter votre score
@@ -90,7 +104,11 @@ votre du. Un composant tiers se chargera de compter votre score
 
 Se postionner sous $GOPATH/src/github.com/vil-coyote-acme/go-xke 
 
-puis lancer go run xke-app.go -clientIp={{clientIp}} -ourIp={{ourIp}} -bartenderIp={{bartenderIp}} -playerId={{playerId}}
+puis lancer 
+
+```
+$ go run xke-app.go -clientIp={{clientIp}} -ourIp={{ourIp}} -bartenderIp={{bartenderIp}} -playerId={{playerId}}
+```
 
 Avec clientIp et bartenderIp qui seront une valeur ip:port fourni lors de l'exercice, ourIp qui sera votre Ip sur le reseau 
 au moment de l'exercice et playerId qui sera votre nom de joueur.
