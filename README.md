@@ -13,19 +13,24 @@ go test github.com/vil-coyote-acme/go-xke/registration -run ^Test_register_shoul
 Il s'agit du cas nominal d'un enregistrement. Vous devrez pour cela completer la creation de l'instance de registration
 en precisant les attributs PlayerId et Ip.
 
-    AIDE : lorsque l'on utilise une instanciation literral de la forme t := myType{}, vous pouvez affecter les attributs
-    du type que vous souhaitez comme ca : t := myType{myStringField: "a string value", myIntValue: 42}
+    AIDE : lorsque l'on utilise une instanciation literral de la forme t := myType{},
+    vous pouvez affecter les attributs du type que vous souhaitez comme ceci : 
+    t := myType{myStringField: "a string value", myIntValue: 42}
 
 Une fois ceci fait, vous devrez utiliser le package json du sdk pour serialiser registration.
     
-    AIDE : lorsque l'on doit dependre d'un autre package, il faut alors l'ajouter en tant qu'import. Si vous utilisez 
-    intellij avec le plugin go, l'ide vous proposera automatiquement d'ajouter l'import, sinon il vous faudra ajouter a 
-    la main "encoding/json" dans les imports
+    AIDE : lorsque l'on doit dependre d'un autre package, il faut alors 
+    l'ajouter en tant qu'import. Si vous utilisez intellij avec le plugin go,
+    l'ide vous proposera automatiquement d'ajouter l'import, sinon 
+    il vous faudra ajouter a la main "encoding/json" dans les imports
     
-    AIDE : vous pouvez remarquer que la fonction de serialisation du package json vous renvois deux valeurs. La premiere
-    est votre structure de donnee serialise presente sous forme d'un tableau d'octet, la seconde est valeur de type
-    'error'. Si cette derniere n'est pas nil, cela signifie que la serialisation a rencontre un probleme. Si vous n'exploitez
-    pas cette valeur (ce qui est ici le cas), vous pouvez choisir de l'ignorer en la remplacant par un '_'. Exemple :
+    AIDE : vous pouvez remarquer que la fonction de serialisation du 
+    package json vous renvois deux valeurs. La premiere est votre structure
+    de donnee serialise presente sous forme d'un tableau d'octet, la seconde
+    est valeur de type 'error'. Si cette derniere n'est pas nil, 
+    cela signifie que la serialisation a rencontre un probleme. Si vous n'exploitez
+    pas cette valeur (ce qui est ici le cas), vous pouvez choisir de l'ignorer
+    en la remplacant par un '_'. Exemple :
     valeur, error := appelFonction()
     valeur, _ := appelFonction()
     
@@ -57,4 +62,31 @@ go test github.com/vil-coyote-acme/go-xke/registration -run ^Test_register_shoul
 Il ne vous reste ici qu'a considerer le cas ou la valeur de retour de type 'error' du Post est non nil. Si tel est le cas,
  il vous faudra retourner cette error !
  
+
+## Module Serveur
+
+Il s'agit du module principal de votre programme. Il recevra les commandes envoyees par les clients, les enverra au
+barman puis se fera payer en retour aupres des clients.
+
+### Requete vers le barman
+
+// todo refaire les tests
+
+Les premiers tests sont les suivants :
+go test github.com/vil-coyote-acme/go-xke/server -run ^Test_postOrder_should_fail$
+go test github.com/vil-coyote-acme/go-xke/server -run ^Test_postOrder_should_do_without_error$
+
+Il porte sur l'envoi de la commande au barman et consiste a implementer la fonction postOrder et la requete Post que
+vous devrez faire est tres similaire a ce que vous avez deja fait dans le module registration
+
+### Payment
+
+// todo refaire les tests + retourner le fric
+
+Il s'agit d'implementer la fonction getDataFromCallback. Il vous faudra faire un Get sur l'url de callback afin de 'recuperer'
+votre du. Un composant tiers se chargera de compter votre score
+
+# lancement de votre programme :
+
+// todo complete me !
 
