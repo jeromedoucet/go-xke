@@ -83,7 +83,7 @@ Les premiers tests sont les suivants :
 go test github.com/vil-coyote-acme/go-xke/server -run ^Test_getDataFromCallback_should_fail_with_error_in_url$
 go test github.com/vil-coyote-acme/go-xke/server -run ^Test_getDataFromCallback_should_not_fail$
 
-Il s'agit d'implementer la fonction getDataFromCallback. Il vous faudra faire un Get sur l'url de callback afin de 'recuperer'
+Il s'agit d'implementer la fonction getDataFromCallback. Il vous faudra faire un Get sur l'url de callback contenu dans **l'order**, afin de 'recuperer'
 votre du. Un composant tiers se chargera de compter votre score
 
 # lancement de votre programme :
