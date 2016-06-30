@@ -35,7 +35,7 @@ Une fois ceci fait, vous devrez utiliser le package json du sdk pour serialiser 
     valeur, _ := appelFonction()
     
 Enfin, il vous faudra faire un appel http en POST en utilisant clientRegistrationURL comme url. La fonction Post se trouve
-dans le package "net/http" (usage http.Post(....)) et necessitera de creer un 'Reader' a partir de de la structure 
+dans le package "net/http" (usage http.Post(....)) et necessitera de creer un 'Reader' a partir de la structure 
 registration serialise. Pour ce faire utiliser NewBuffer(myByteArray) du package "bytes".
 
 ### cas de rejet de la requete de la part du client
@@ -81,12 +81,22 @@ vous devrez faire est tres similaire a ce que vous avez deja fait dans le module
 
 ### Payment
 
-// todo refaire les tests + retourner le fric
+Les premiers tests sont les suivants :
+go test github.com/vil-coyote-acme/go-xke/server -run ^Test_getDataFromCallback_should_fail_with_error_in_url$
+go test github.com/vil-coyote-acme/go-xke/server -run ^Test_getDataFromCallback_should_not_fail$
 
 Il s'agit d'implementer la fonction getDataFromCallback. Il vous faudra faire un Get sur l'url de callback afin de 'recuperer'
 votre du. Un composant tiers se chargera de compter votre score
 
 # lancement de votre programme :
 
-// todo complete me !
+Se postionner sous $GOPATH/src/github.com/vil-coyote-acme/go-xke 
+
+puis lancer go run xke-app.go -clientIp={{clientIp}} -ourIp={{ourIp}} -bartenderIp={{bartenderIp}} -playerId={{playerId}}
+
+Avec clientIp et bartenderIp qui seront une valeur ip:port fourni lors de l'exercice, ourIp qui sera votre Ip sur le reseau 
+au moment de l'exercice et playerId qui sera votre nom de joueur.
+
+Bonne chance !
+ 
 
