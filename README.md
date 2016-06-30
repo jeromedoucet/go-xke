@@ -8,7 +8,7 @@ Le principe est simple. Nous vous proposons un jeu où vous êtes un serveur dan
  - installation de Go : https://golang.org/dl/
  - creation du workspace Go : un repertoire contenant src/ , pkg/  et  bin/
  - export de la variable $GOPATH pointant vers le workspace Go
- - create un repertoire $GOPATH/src/github.com/vil-coyote-acme/ 
+ - **create un repertoire $GOPATH/src/github.com/vil-coyote-acme/ **
  - executer la commande:
 
 ```sh
