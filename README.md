@@ -49,7 +49,7 @@ Si le nom de joueur que vous avez choisi est deja pris, ou si vous essayez de vo
 Le test correspondant est le suivant :
 
 ```
-go test github.com/vil-coyote-acme/go-xke/registration -run ^Test_register_should_return_no_error_on_non_200_response$
+$ go test github.com/vil-coyote-acme/go-xke/registration -run ^Test_register_should_return_no_error_on_non_200_response$
 ```
 
 Il vous faudra alors exploiter la premiere valeur retourne par http.Post(...) qui possede un attribut 'StatusCode'
