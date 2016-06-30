@@ -1,10 +1,16 @@
 package registration
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/vil-coyote-acme/go-concurrency/commons"
+	"log"
+)
 
 func Register(clientUrl string, ourIp string, playerId string) error {
 	/**TODO 1. use json library to marshall an object of type registration*/
 	//a. create an object type registration
+	reg := commons.Registration{}
+	log.Println(fmt.Sprintf("server | will do a registration: %s", reg))
 
 	//b. use json library to marshall the object
 
