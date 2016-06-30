@@ -26,6 +26,7 @@ Aller au code et executer
 
 ```sh
 $ go get github.com/vil-coyote-acme/go-concurrency/commons
+$ go get github.com/stretchr/testify/assert
 ```
 
 
