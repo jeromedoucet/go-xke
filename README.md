@@ -8,7 +8,7 @@ Le principe est simple. Nous vous proposons un jeu où vous êtes un serveur dan
  - installation de Go : https://golang.org/dl/
  - creation du workspace Go : un repertoire contenant src/ , pkg/  et  bin/
  - export de la variable $GOPATH pointant vers le workspace Go
- - **create un repertoire $GOPATH/src/github.com/vil-coyote-acme/ **
+ - create un repertoire $GOPATH/src/github.com/vil-coyote-acme/ 
  - executer la commande:
 
 ```sh
@@ -22,9 +22,21 @@ Basculer sur la branche step1 :
 $ git checkout step-1
 ```
 
-Modifier les méthodes de **server.go**. Utiliser les **TODO** dans le code pour faire passer les tests
+Aller au code et executer
+
+```sh
+$ go get github.com/vil-coyote-acme/go-concurrency/commons
+```
+
+
+Modifier les méthodes de **server.go** et **registration.go**. Utiliser les **TODO** dans le code pour faire passer les tests
+
+La suite par ici:
+https://github.com/vil-coyote-acme/go-xke/tree/step-1
 
 #### Plus d’infos :
 - https://golang.org/pkg/net/http/
 - https://golang.org/pkg/io/
 - https://golang.org/pkg/encoding/json/
+
+
