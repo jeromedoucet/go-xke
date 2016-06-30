@@ -70,8 +70,6 @@ barman puis se fera payer en retour aupres des clients.
 
 ### Requete vers le barman
 
-// todo refaire les tests
-
 Les premiers tests sont les suivants :
 go test github.com/vil-coyote-acme/go-xke/server -run ^Test_postOrder_should_fail$
 go test github.com/vil-coyote-acme/go-xke/server -run ^Test_postOrder_should_do_without_error$
