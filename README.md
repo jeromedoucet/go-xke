@@ -16,7 +16,7 @@ $ git clone https://github.com/vil-coyote-acme/go-xke.git
 ```
 
 ### 1. Le server et la communication http et parsing json
-Basculer sur la branche step1 : 
+Basculer sur la branche step-1 : 
 
 ```sh
 $ git checkout step-1
@@ -40,4 +40,13 @@ https://github.com/vil-coyote-acme/go-xke/tree/step-1
 - https://golang.org/pkg/io/
 - https://golang.org/pkg/encoding/json/
 
+### 2. les go - channels y la communication concurrente
 
+Basculer sur la branche step-2 : 
+
+```sh
+$ git checkout step-2
+```
+
+La suite par ici:
+https://github.com/vil-coyote-acme/go-xke/tree/step-2
