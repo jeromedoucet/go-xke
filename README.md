@@ -40,7 +40,7 @@ https://github.com/vil-coyote-acme/go-xke/tree/step-1
 - https://golang.org/pkg/io/
 - https://golang.org/pkg/encoding/json/
 
-### 2. les go - channels y la communication concurrente
+### 2. Les go channels et la communication concurrente
 
 Basculer sur la branche step-2 : 
 
