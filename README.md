@@ -9,10 +9,12 @@ Le principe est simple. Nous vous proposons un jeu où vous êtes un serveur dan
  - creation du workspace Go : un repertoire contenant src/ , pkg/  et  bin/
  - export de la variable $GOPATH pointant vers le workspace Go
  - create un repertoire $GOPATH/src/github.com/vil-coyote-acme/ 
- - executer la commande:
+ - executer les commande:
 
 ```sh
 $ git clone https://github.com/vil-coyote-acme/go-xke.git
+$ cd go-xke
+$ ./init.sh
 ```
 
 ### 1. Le server et la communication http et parsing json
