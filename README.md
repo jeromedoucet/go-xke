@@ -24,7 +24,7 @@ Basculer sur la branche step-1 :
 $ git checkout step-1
 ```
 
-Aller au code et executer
+Allez sur la console et executez
 
 ```sh
 $ go get github.com/vil-coyote-acme/go-concurrency/commons
@@ -42,9 +42,9 @@ https://github.com/vil-coyote-acme/go-xke/tree/step-1
 - https://golang.org/pkg/io/
 - https://golang.org/pkg/encoding/json/
 
-### 2. Les go channels et la communication concurrente
+### 2. Les goroutine, les channels et la communication concurrente
 
-Basculer sur la branche step-2 : 
+Basculez sur la branche step-2 : 
 
 ```sh
 $ git checkout step-2
