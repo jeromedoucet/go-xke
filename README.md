@@ -1,4 +1,4 @@
-# The Bartender
+# Le serveur'X
 ## Objectif 
 Cet atelier a pour objectif de vous faire coder en go et de découvrir le langage.
 
