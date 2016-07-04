@@ -1,15 +1,15 @@
 # Optimisation
 
-Votre code fontionne, felicitations ! Mais il s'agit maintenant de l'ameliorer. Comme vous avez pu vous en rendre compte,
-vous etes evalue sur votre efficacite a traiter les commandes, et pour le moment tout est sequentiel ! Ce n'est pas tres 
+Votre code fontionne, félicitations ! Mais il s'agit maintenant de l'améliorer. Comme vous avez pu vous en rendre compte,
+vous êtes evalué sur votre efficacité a traiter les commandes, et pour le moment tout est séquentiel ! Ce n'est pas très 
 efficace.
 
-En effet, le barman ne traite pas immediatement votre requete, et plus celle-ci vaut chere, plus il prend son temps! Il
-s'agit neanmoins d'un excellent barman qui est capable de traiter 5 commande maximum par serveur en meme temps.
-Mais si jamais un serveur essayait de depasser cette limite, il se verrait immediatement et lourdement sanctionne !
+En effet, le barman ne traite pas immédiatement votre requête, et plus celle-ci vaut chère, plus il prend son temps! Il
+s'agit néanmoins d'un excellent barman qui est capable de traiter 5 commande maximum par serveur en meme temps.
+Mais si jamais un serveur essayait de dépasser cette limite, il se verrait immédiatement et lourdement sanctionné !
 
 Vous aller ici devoir vous servir des goroutines et des channels. Le serveur fonctionne encore, mais des indications
-sous la forme de TODO ont ete laisse dans le code pour vous guider.
+sous la forme de TODO ont ete laissé dans le code pour vous guider.
 
 Rappel :
 ```go
