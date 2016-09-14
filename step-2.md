@@ -13,24 +13,53 @@ En effet, le barman ne traite pas immédiatement votre requête, et plus celle-c
 nous avons un excellent barman qui est capable de traiter 5 commande maximum par serveur en même temps.
 Mais si jamais un serveur essayait de dépasser cette limite, il se verrait immédiatement et lourdement sanctionné !
 
-Vous allez ici devoir vous servir des [goroutines](https://www.golang-book.com/books/intro/10#section1) et des [channels](https://www.golang-book.com/books/intro/10#section2). Le serveur fonctionne encore, mais des indications
-sous la forme de *TODO* ont été laissés dans le code pour vous guider.
+Vous allez ici devoir vous servir des [goroutines](https://www.golang-book.com/books/intro/10#section1) et des [channels](https://www.golang-book.com/books/intro/10#section2). Le serveur fonctionne encore, mais des indications sous la forme de *TODO* ont été laissés dans le code pour vous guider.
 
-Rappel :
+Nous vous proposons d'utiliser le channel *orderChan* du *server* pour gérer les commandes du client.
+<blockquote class = 'help' markdown="1">
+
+```go
+// pousser une valeur dans un channel
+c <- Poney{Name: "mon petit poney"}
+
+```
+</blockquote>
+
+Assurez-vous que le channel a été bien declaré avant de l'utiliser.
+
+<blockquote class = 'help' markdown="1">
+
 ```go
 // initialisation d'un channel bloquant de Poney
 c:= make(chan Poney)
 
-// pousser une valeur dans un channel
-c <- Poney{Name: "mon petit poney"}
+```
 
+</blockquote>
+
+Vous pouvez traiter plusieurs commandes de manière concurrente, mais rappelez-vous de vous limiter à 5.
+
+<blockquote class = 'help' markdown="1">
+Aidez-vous des go routines pour creer 5 travails qui consoment des *orders* du channel de manière concurrente.
+```go
+
+for i := 0; i < 5; i ++ {
+	go consumeOrder()
+}
+
+```
+
+</blockquote>
+
+Maintenant, chaque consommateur puisse prendre l'ordre envoyé au channel et l'envoyer au barman.
+
+<blockquote class = 'help' markdown="1">
+```go
 // consommer une valeur dans un channel
 v := <- c
 
-// faire executer une fonction en concurrence :
-go maFonction()
-
 ```
+</blockquote>
 
 # Pour aller plus loin...
 
@@ -54,5 +83,6 @@ select {
 - [https://golang.org/pkg/net/http/](https://golang.org/pkg/net/http/)
 - [https://golang.org/pkg/io/](https://golang.org/pkg/io/)
 - [https://golang.org/pkg/encoding/json/](https://golang.org/pkg/encoding/json/)
+
 
 
