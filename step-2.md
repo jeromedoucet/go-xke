@@ -82,9 +82,9 @@ select {
 ```
 
 #### Plus d’infos :
-- [https://golang.org/pkg/net/http/](https://golang.org/pkg/net/http/)
-- [https://golang.org/pkg/io/](https://golang.org/pkg/io/)
-- [https://golang.org/pkg/encoding/json/](https://golang.org/pkg/encoding/json/)
+- [https://golang.org/pkg/net/http/](https://golang.org/pkg/net/http/) ou [local](http://localhost:6060/pkg/net/http/)
+- [https://golang.org/pkg/io/](https://golang.org/pkg/io/) ou [local](http://localhost:6060/pkg/io/)
+- [https://golang.org/pkg/encoding/json/](https://golang.org/pkg/encoding/json/) ou [local](http://localhost:6060/pkg/encoding/json/)
 
 
 

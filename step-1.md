@@ -159,7 +159,7 @@ $ go test github.com/vil-coyote-acme/go-xke/server -run ^Test_getDataFromCallbac
 $ go test github.com/vil-coyote-acme/go-xke/server -run ^Test_getDataFromCallback_should_not_fail$
 ```
 
- Il vous faudra faire un *Get* sur l'url de callback (*order.CallBackUrl*) contenu dans **l'order**, afin de 'recuperer'
+ Il vous faudra faire *Get* sur l'url de callback (*order.CallBackUrl*) contenu dans **l'order**, afin de 'recuperer'
 votre dû.
 
 <blockquote class = 'help' markdown="1">
@@ -184,9 +184,9 @@ Avec *clientIp* et *bartenderIp* qui seront une valeur ip:port fourni lors de l'
 Bonne chance !
 
 #### Plus d’infos :
-- [https://golang.org/pkg/net/http/](https://golang.org/pkg/net/http/)
-- [https://golang.org/pkg/io/](https://golang.org/pkg/io/)
-- [https://golang.org/pkg/encoding/json/](https://golang.org/pkg/encoding/json/)
+- [https://golang.org/pkg/net/http/](https://golang.org/pkg/net/http/) ou [local](http://localhost:6060/pkg/net/http/)
+- [https://golang.org/pkg/io/](https://golang.org/pkg/io/) ou [local](http://localhost:6060/pkg/io/)
+- [https://golang.org/pkg/encoding/json/](https://golang.org/pkg/encoding/json/) ou [local](http://localhost:6060/pkg/encoding/json/)
  
 #### La suite
 

@@ -10,7 +10,7 @@ title: Programation concurrente GO
 
 Cet atelier a pour objectif de vous faire coder en go et de découvrir le langage.
 
-Le principe est simple. Nous vous proposons un jeu où vous êtes un serveur dans un bar.  Vous devez passer les commandes des clients et les faire payer ses boisons. Nous avons codé pour vous le  *bartender*, le *ordermaker* et le *client*. On vous donne le serveur avec des méthodes à implémenter et des tests unitaires.
+Le principe est simple: Nous vous proposons un jeu où vous êtes un serveur dans un bar.  Vous devez passer les commandes des clients et les faire payer ses boisons. Nous avons codé pour vous le  *bartender*, le *ordermaker* et le *client*. On vous donne le serveur avec des méthodes à implémenter et des tests unitaires.
 
 ## Les pre-requis
 
@@ -25,6 +25,12 @@ Le principe est simple. Nous vous proposons un jeu où vous êtes un serveur dan
 $ git clone https://github.com/vil-coyote-acme/go-xke.git
 $ cd go-xke
 $ ./init.sh
+```
+
+**Note:** Vous pouvez avoir un serveur de documentation de go en local avec la commande:
+
+```sh
+$ godoc -http=:6060
 ```
 
 ### 1. Le server, la communication http et parsing json
@@ -47,9 +53,9 @@ La suite par ici:
 [step-1](step-1)
 
 #### Plus d’infos :
-- [https://golang.org/pkg/net/http/](https://golang.org/pkg/net/http/)
-- [https://golang.org/pkg/io/](https://golang.org/pkg/io/)
-- [https://golang.org/pkg/encoding/json/](https://golang.org/pkg/encoding/json/)
+- [https://golang.org/pkg/net/http/](https://golang.org/pkg/net/http/) ou [local](http://localhost:6060/pkg/net/http/)
+- [https://golang.org/pkg/io/](https://golang.org/pkg/io/) ou [local](http://localhost:6060/pkg/io/)
+- [https://golang.org/pkg/encoding/json/](https://golang.org/pkg/encoding/json/) ou [local](http://localhost:6060/pkg/encoding/json/)
 
 ### 2. Les goroutine, les channels et la communication concurrente
 
