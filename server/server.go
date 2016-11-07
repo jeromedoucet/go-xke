@@ -7,7 +7,6 @@ import (
 	"io"
 	"log"
 	"net/http"
-
 	"github.com/vil-coyote-acme/go-concurrency/commons"
 )
 
