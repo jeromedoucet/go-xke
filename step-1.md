@@ -173,13 +173,18 @@ paymentRes, paymentErr := http.Get(order.CallBackUrl)
 # Lancement de votre programme :
 
 Bravo! 
-vous avez une première version du serveur. Pour le tester, postionnez-vous sous *$GOPATH/src/github.com/vil-coyote-acme/go-xke*, puis lancez: 
+vous avez une première version du serveur. Pour le tester, il va d'abord falloir vous connecter au réseau local mis à votre
+disposition. Le mot de passe est xebicon2016.
+ 
+Postionnez-vous ensuite sous *$GOPATH/src/github.com/vil-coyote-acme/go-xke*, puis lancez: 
 
 ```
-$ go run xke-app.go -clientIp={{clientIp}} -ourIp={{ourIp}} -bartenderIp={{bartenderIp}} -playerId={{playerId}}
+export OUR_IP={{ourIp}}
+export OUR_NAME={{playerId}}
+./run.sh
 ```
 
-Avec *clientIp* et *bartenderIp* qui seront une valeur ip:port fourni lors de l'exercice, *ourIp* qui sera votre *Ip* sur le réseau au moment de l'exercice et *playerId* qui sera votre nom de joueur.
+Avec *ourIp* qui sera votre *Ip* sur le réseau au moment de l'exercice et *playerId* qui sera votre nom de joueur.
 
 Bonne chance !
 
