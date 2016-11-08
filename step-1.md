@@ -179,12 +179,12 @@ disposition. Le mot de passe est xebicon2016.
 Postionnez-vous ensuite sous *$GOPATH/src/github.com/vil-coyote-acme/go-xke*, puis lancez: 
 
 ```
-export OUR_IP={{ourIp}}
-export OUR_NAME={{playerId}}
+export OUR_IP=$ourIp
+export OUR_NAME=$playerId
 ./run.sh
 ```
 
-Avec *ourIp* qui sera votre *Ip* sur le réseau au moment de l'exercice et *playerId* qui sera votre nom de joueur.
+Avec *$ourIp* qui sera votre *Ip* sur le réseau au moment de l'exercice et *$playerId* qui sera votre nom de joueur.
 
 Bonne chance !
 
